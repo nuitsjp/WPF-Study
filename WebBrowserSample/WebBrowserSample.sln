@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoUaWebApp", "EchoUaWebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleNewWindowBrowser", "HandleNewWindowBrowser\HandleNewWindowBrowser.csproj", "{548AEEEC-9199-49D9-9EE3-FD0D8F90F276}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuppressJavaScriptErrorBrowser", "SuppressJavaScriptErrorBrowser\SuppressJavaScriptErrorBrowser.csproj", "{F98F6A9C-D4D0-4EF9-AABC-84F79485E3C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{548AEEEC-9199-49D9-9EE3-FD0D8F90F276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{548AEEEC-9199-49D9-9EE3-FD0D8F90F276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{548AEEEC-9199-49D9-9EE3-FD0D8F90F276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98F6A9C-D4D0-4EF9-AABC-84F79485E3C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98F6A9C-D4D0-4EF9-AABC-84F79485E3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98F6A9C-D4D0-4EF9-AABC-84F79485E3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98F6A9C-D4D0-4EF9-AABC-84F79485E3C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
