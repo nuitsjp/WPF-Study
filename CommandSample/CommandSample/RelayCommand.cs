@@ -13,14 +13,14 @@ namespace CommandSample
         private readonly Func<bool> _canExecute;
 
         /// <summary>
-        /// RaiseCanExecuteChanged が呼び出されたときに生成されます。
+        /// 実行可能状態の変更を通知する
         /// </summary>
         public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// 常に実行可能な新しいコマンドを作成します。
         /// </summary>
-        /// <param name="execute">実行ロジック。</param>
+        /// <param name="execute">実行ロジック</param>
         public RelayCommand(Action execute)
             : this(execute, null)
         {
@@ -29,8 +29,8 @@ namespace CommandSample
         /// <summary>
         /// 新しいコマンドを作成します。
         /// </summary>
-        /// <param name="execute">実行ロジック。</param>
-        /// <param name="canExecute">実行ステータス ロジック。</param>
+        /// <param name="execute">コマンドの実行処理</param>
+        /// <param name="canExecute">実行可能状態の判定処理</param>
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             if (execute == null)
@@ -40,32 +40,20 @@ namespace CommandSample
         }
 
         /// <summary>
-        /// 現在の状態でこの <see cref="RelayCommand"/> が実行できるかどうかを判定します。
+        /// コマンドが実行可能かどうか判定します。
         /// </summary>
-        /// <param name="parameter">
-        /// コマンドによって使用されるデータ。コマンドが、データの引き渡しを必要としない場合、このオブジェクトを null に設定できます。
-        /// </param>
-        /// <returns>このコマンドが実行可能な場合は true、それ以外の場合は false。</returns>
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute();
-        }
+        /// <param name="parameter"></param>
+        /// <returns>この実行可能な場合は true、それ以外の場合は false。</returns>
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
 
         /// <summary>
-        /// 現在のコマンド ターゲットに対して <see cref="RelayCommand"/> を実行します。
+        /// コマンドを実行します。
         /// </summary>
-        /// <param name="parameter">
-        /// コマンドによって使用されるデータ。コマンドが、データの引き渡しを必要としない場合、このオブジェクトを null に設定できます。
-        /// </param>
-        public void Execute(object parameter)
-        {
-            _execute();
-        }
+        /// <param name="parameter"></param>
+        public void Execute(object parameter) => _execute();
 
         /// <summary>
-        /// <see cref="CanExecuteChanged"/> イベントを発生させるために使用されるメソッド
-        /// <see cref="CanExecute"/> の戻り値を表すために
-        /// メソッドが変更されました。
+        /// コマンドの実行状態が変更されたことを通知します。
         /// </summary>
         public void RaiseCanExecuteChanged()
         {
