@@ -1,67 +1,64 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using CommandSample.Annotations;
+using Prism.Commands;
 
 namespace CommandSample
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private string _value1;
-
-        public string Value1
+        private string _name;
+        public string Name
         {
-            get { return _value1; }
-            set { _value1 = value; }
+            get { return _name; }
+            set
+            {
+                if (OnPropertyChanged(ref _name, value))
+                    ExecuteCommand.RaiseCanExecuteChanged();
+            }
         }
-
-        private string _value2;
-
-        public string Value2
-        {
-            get { return _value2; }
-            set { _value2 = value; }
-        }
-
-        private int _result;
-
-        public int Result
+        public string Address { get; set; }
+        private string _result;
+        public string Result
         {
             get { return _result; }
             set
             {
-                if (!Object.Equals(_result, value))
-                {
-                    _result = value;
-                    OnPropertyChanged();
-                }
+                OnPropertyChanged(ref _result, value);
             }
         }
 
-        public ICommand ExecuteCommand { get; }
+        public DelegateCommand ExecuteCommand { get; }
 
         public MainWindowViewModel()
         {
             ExecuteCommand = 
-                new RelayCommand(
-                    () => Result = int.Parse(Value1) + int.Parse(Value2),
+                new DelegateCommand(
+                    () =>　Result = "登録されました",
                     CanExecute);
         }
 
         private bool CanExecute()
         {
-            int temp;
-            return int.TryParse(Value1, out temp) && int.TryParse(Value2, out temp);
+            return !string.IsNullOrWhiteSpace(Name);
         }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual bool OnPropertyChanged<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (!Equals(field, value))
+            {
+                field = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
     }
