@@ -1,0 +1,3 @@
+﻿MahApps.Metro
+Microsoft Public License (Ms-PL)
+https://github.com/MahApps/MahApps.Metro/blob/develop/LICENSE

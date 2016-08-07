@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="NotifyProcessingSample.ProcessingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NotifyProcessingSample"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid Background="#50000000">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="200" Background="#006099">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <local:ProgressRing Foreground="White" Margin="10"/>
+                <TextBlock Text="只今処理注です。しばらくお待ちください" FontSize="30" Foreground="White" FontWeight="Thin"/>
+            </StackPanel>
+        </Grid>  
+    </Grid>
+</UserControl>
