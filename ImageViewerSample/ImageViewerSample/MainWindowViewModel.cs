@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,17 +20,21 @@ namespace ImageViewerSample
             set { Set(ref _selectedImage, value);}
         }
 
-        private ObservableCollection<byte[]> _images;
+        private readonly ObservableCollection<byte[]> _images = new ObservableCollection<byte[]>();
 
         public ReadOnlyObservableCollection<byte[]> Images { get; }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindowViewModel()
         {
             Images = new ReadOnlyObservableCollection<byte[]>(_images);
+            for (int i = 0; i < 100; i++)
+            {
+                _images.Add(File.ReadAllBytes("report.jpg"));
+            }
         }
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void Set<T>(ref T parameter, T value, [CallerMemberName] string propertyName = null)
         {

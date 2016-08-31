@@ -6,7 +6,90 @@
         xmlns:local="clr-namespace:ImageViewerSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+        <local:ByteArrayToThumbnailConverter x:Key="ByteArrayToThumbnailConverter"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}">
+            <ListView.Resources>
+                <!--
+                <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                    <Border Background="AliceBlue">
+                        <Image Source="{Binding ., Converter={StaticResource ByteArrayToThumbnailConverter}}"/>
+                    </Border>
+                </ControlTemplate>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border>
+                                    <Image Source="{Binding ., Converter={StaticResource ByteArrayToThumbnailConverter}}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+                -->
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Resources>
+                        <LinearGradientBrush x:Key="ListItemHoverFill" EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFF1FBFF" Offset="0"/>
+                            <GradientStop Color="#FFD5F1FE" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Style.Resources>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Border CornerRadius="2" SnapsToDevicePixels="True"  
+                                BorderThickness="{TemplateBinding BorderThickness}"   
+                                BorderBrush="{TemplateBinding BorderBrush}"   
+                                Background="{TemplateBinding Background}">
+                                    <Image Source="{Binding ., Converter={StaticResource ByteArrayToThumbnailConverter}}"></Image>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
+                                        <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="AliceBlue" />
+                                        <Setter Property="BorderBrush" Value="#FF98DDFB" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <!--
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding ., Converter={StaticResource ByteArrayToThumbnailConverter}}"></Image>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            -->
+        </ListView>
+        <ScrollViewer Grid.Column="1">
+            <Image Source="{Binding SelectedImage, Converter={StaticResource ByteArrayToImageConverter}}"/>
+        </ScrollViewer>
     </Grid>
 </Window>
