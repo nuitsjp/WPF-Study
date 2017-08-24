@@ -1,0 +1,28 @@
+﻿<Window x:Class="DataTemplateSelectorSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataTemplateSelectorSample"
+        xmlns:viewModels="clr-namespace:DataTemplateSelectorSample.ViewModels"
+        xmlns:views="clr-namespace:DataTemplateSelectorSample.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:AddressEntryViewModel}">
+            <views:AddressEntry/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:NameEntryViewModel}">
+            <views:NameEntry/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+            <ItemsControl ItemsSource="{Binding Entries}" VerticalAlignment="Center"></ItemsControl>
+            <Button Content="登録" Command="{Binding RegisterCommand}" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
