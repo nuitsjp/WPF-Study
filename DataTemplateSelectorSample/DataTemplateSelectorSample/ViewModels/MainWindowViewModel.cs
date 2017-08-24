@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DataTemplateSelectorSample.Models;
 using Prism.Commands;
 
 namespace DataTemplateSelectorSample.ViewModels
@@ -32,10 +33,17 @@ namespace DataTemplateSelectorSample.ViewModels
 
         public MainWindowViewModel()
         {
-            var entries = new List<IEntryViewModel>();
-            entries.Add(new AddressEntryViewModel { PostalCode = "100-1234" });
-            entries.Add(new NameEntryViewModel { FirstName = "太郎", LastName = "日本" });
-            Entries = entries;
+            // 引数で渡される前提とするがここでは省略
+            var entries = new List<Entry>();
+            entries.Add(new Entry { EntryClass = EntryClass.Address });
+            entries.Add(new Entry { EntryClass = EntryClass.Name });
+
+            var entryViewModels = new List<IEntryViewModel>();
+            foreach (var entry in entries)
+            {
+                entryViewModels.Add(EntryViewModelFactory.CreateViewModel(entry));
+            }
+            Entries = entryViewModels;
         }
     }
 }

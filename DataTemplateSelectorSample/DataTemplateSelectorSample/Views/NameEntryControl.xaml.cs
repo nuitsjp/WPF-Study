@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DataTemplateSelectorSample.Views
 {
     /// <summary>
-    /// AddressEntry.xaml の相互作用ロジック
+    /// NameEntryControl.xaml の相互作用ロジック
     /// </summary>
-    public partial class AddressEntry : UserControl
+    public partial class NameEntryControl : UserControl
     {
-        public AddressEntry()
+        public NameEntryControl()
         {
             InitializeComponent();
         }

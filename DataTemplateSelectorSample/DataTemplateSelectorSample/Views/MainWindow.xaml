@@ -13,10 +13,10 @@
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:AddressEntryViewModel}">
-            <views:AddressEntry/>
+            <views:AddressEntryControl/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:NameEntryViewModel}">
-            <views:NameEntry/>
+            <views:NameEntryControl/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
