@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using Serilog.Sinks.MSSqlServer;
 using SimpleInjector;
 using ILogger = Serilog.ILogger;
 
@@ -29,16 +31,35 @@ namespace SerilogOnNetFramework
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var connectionString = @"server=localhost;uid=DFS;password=DFS;";
+            var tableName = "Logs";
+
+            var columnOptions = new ColumnOptions();
+            columnOptions.Store.Remove(StandardColumn.MessageTemplate);
+            columnOptions.Store.Remove(StandardColumn.Properties);
+            columnOptions.Store.Add(StandardColumn.LogEvent);
+            columnOptions.AdditionalColumns = new Collection<SqlColumn>
+            {
+                new SqlColumn("Caller", SqlDbType.NVarChar)
+            };
+
             // ロガーを構築する
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
                 .Enrich.WithCaller()
                 .WriteTo.Async(x => x.Console(
                     outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message} (at {Caller}){NewLine}{Exception}"))
                 .WriteTo.Async(x => x.RollingFile(
-                    new CompactJsonFormatter(), 
+                    new CompactJsonFormatter(),
                     "logs/log-{Date}.log"))
+                .WriteTo.Async(x => x.MSSqlServer(
+                    connectionString, tableName,
+                    columnOptions: columnOptions,
+                    autoCreateSqlTable:true
+                ))
                 .CreateLogger();
 
+            // Setup Microsoft.Extensions.Logging
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddSerilog();
             var logger = loggerFactory.CreateLogger<App>();
