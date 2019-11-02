@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeWindow", "ChromeWindow\ChromeWindow.csproj", "{C18A59C3-9389-4FA7-BA9C-8229CF383406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeWindowWithMaterialDesignThemes", "ChromeWindowWithMaterialDesignThemes\ChromeWindowWithMaterialDesignThemes.csproj", "{405D53DA-AA58-4B5A-8CAD-3A87D72FD005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeWindowWithMaterialDesignThemes.App", "ChromeWindowWithMaterialDesignThemes.App\ChromeWindowWithMaterialDesignThemes.App.csproj", "{607F6B91-29FB-47FE-BFC2-3F5FFFA2EF00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C18A59C3-9389-4FA7-BA9C-8229CF383406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18A59C3-9389-4FA7-BA9C-8229CF383406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18A59C3-9389-4FA7-BA9C-8229CF383406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18A59C3-9389-4FA7-BA9C-8229CF383406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405D53DA-AA58-4B5A-8CAD-3A87D72FD005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405D53DA-AA58-4B5A-8CAD-3A87D72FD005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405D53DA-AA58-4B5A-8CAD-3A87D72FD005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405D53DA-AA58-4B5A-8CAD-3A87D72FD005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{607F6B91-29FB-47FE-BFC2-3F5FFFA2EF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{607F6B91-29FB-47FE-BFC2-3F5FFFA2EF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{607F6B91-29FB-47FE-BFC2-3F5FFFA2EF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{607F6B91-29FB-47FE-BFC2-3F5FFFA2EF00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FB9E935-981D-4394-B617-869D063808C2}
+	EndGlobalSection
+EndGlobal
