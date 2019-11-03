@@ -1,0 +1,23 @@
+﻿<Window x:Class="ChromeWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChromeWindow"
+        mc:Ignorable="d"
+        Title="MainMyWindow" Height="450" Width="800"
+        Style="{DynamicResource DefaultWindowStyle}"
+        x:Name="MyWindow"
+        StateChanged="OnStateChanged">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <TextBlock Text="{Binding Title, ElementName=MyWindow, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6,3,12,3" FontSize="14.667" Foreground="White"/>
+            <Button Content="✕" Width="24" Height="24" HorizontalAlignment="Right" Background="Red" BorderThickness="0" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True"/>
+        </DockPanel>
+
+    </Grid>
+</Window>
